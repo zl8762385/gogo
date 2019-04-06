@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	frame := frame.Default()
+	frame := frame.Router()
 	//frame.GET("act/foo", &controllers.Act{})
 	//frame.GET("act/index", &controllers.Act{})
 	frame.GET("books/infos", &controllers.Books{})

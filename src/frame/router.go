@@ -22,7 +22,7 @@ type application struct {
 }
 
 // 初始化
-func Default() *application {
+func Router() *application {
 	return &application{
 		routes: make(map[string]interface{}),
 	}
