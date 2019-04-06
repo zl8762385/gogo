@@ -1,0 +1,37 @@
+package main
+
+import (
+	"io"
+	"net/http"
+)
+
+func main() {
+	// 静态服务路由
+	http.Handle("/css/", http.FileServer(http.Dir(staticPath())))
+	http.Handle("/js/", http.FileServer(http.Dir(staticPath())))
+	http.Handle("/images/", http.FileServer(http.Dir(staticPath())))
+
+	// 动态
+	http.HandleFunc("/index", hiHandler)
+	http.ListenAndServe(":80", nil)
+}
+
+func hiHandler(w http.ResponseWriter, r *http.Request) {
+	io.WriteString(w, "hello, xiaoliang")
+}
+
+// 获取静态文件地址
+func staticPath() string {
+	path := "./public/static"
+
+	return path
+}
+
+/*
+ * 检查错误
+ * */
+func checkErr(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
